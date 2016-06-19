@@ -121,8 +121,6 @@ END
         url: 'https://exist.io/api/1/users/$self/today/',
         headers: {'Authorization' => "Bearer #{@exist_config['access_token']}" }
       )
-
-      puts today
     rescue => e
       puts e.response
     end
