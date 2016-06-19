@@ -18,6 +18,7 @@ config = {
 $slog.register_plugin({ 'class' => 'MFPLogger', 'config' => config })
 
 require 'nokogiri'
+require 'rest-client'
 
 class MFPLogger < Slogger
   # @config is available with all of the keys defined in "config" above
@@ -85,10 +86,8 @@ class MFPLogger < Slogger
   end
 
   def to_md(str)
-
-    str = URI.escape(str)
     to_md_url = 'http://fuckyeahmarkdown.com/go/'
-    conv = open(to_md_url + '?html=' + str)
-    conv.read
+    conv = RestClient.post(to_md_url, :html => str)
+    conv.to_str
   end
 end

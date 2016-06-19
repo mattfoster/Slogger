@@ -199,11 +199,11 @@ class TwitterLogger < Slogger
 
   def do_log
     if @config.key?(self.class.name)
-        @twitter_config = @config[self.class.name]
-        if !@twitter_config.key?('twitter_users') || @twitter_config['twitter_users'] == []
-          @log.warn("Twitter users have not been configured, please edit your slogger_config file.")
-          return
-        end
+      @twitter_config = @config[self.class.name]
+      if !@twitter_config.key?('twitter_users') || @twitter_config['twitter_users'] == []
+        @log.warn("Twitter users have not been configured, please edit your slogger_config file.")
+        return
+      end
     else
       @log.warn("Twitter users have not been configured, please edit your slogger_config file.")
       return
